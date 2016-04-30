@@ -1,0 +1,6 @@
+description = 'Stefans Poker Model'
+dependencies {
+
+    /* Unit Tests */
+    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+}

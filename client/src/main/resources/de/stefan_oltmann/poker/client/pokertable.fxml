@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="1000.0" maxWidth="1300.0" minHeight="1000.0" minWidth="1300.0" prefHeight="1000.0" prefWidth="1300.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.stefan_oltmann.poker.client.PokerTableController">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="800.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <Group>
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer1" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer1" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="551.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="482.0" layoutY="425.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer2" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer2" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="551.0" layoutY="180.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="482.0" layoutY="94.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer3" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer3" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="551.0" layoutY="180.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="14.0" layoutY="1.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer4" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer4" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="47.0" layoutY="616.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="14.0" layoutY="-343.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer5" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer5" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="47.0" layoutY="616.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Group layoutX="507.0" layoutY="155.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                  <Button fx:id="sitDownPlayer6" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer6" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
+                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="47.0" layoutY="616.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <HBox id="communityCards" alignment="CENTER" layoutX="415.0" layoutY="317.0" spacing="5.0">
+               <children>
+                  <Rectangle fx:id="flopCard1" arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="125.0" layoutX="400.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+                  <Rectangle fx:id="flopCard2" arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="125.0" layoutX="500.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+                  <Rectangle fx:id="flopCard3" arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="125.0" layoutX="598.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+                  <Rectangle fx:id="turnCard" arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="125.0" layoutX="698.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+                  <Rectangle fx:id="riverCard" arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="125.0" layoutX="800.0" layoutY="318.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+               </children>
+            </HBox>
+            <Circle id="dealerButton" fx:id="dealerButton" fill="WHITE" layoutX="965.0" layoutY="482.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
+   </center>
+   <bottom>
+      <BorderPane pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <right>
+            <Group id="betCheckFoldControls" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="1109.0" layoutY="820.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray; -fx-border-radius: 20;" text="150" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="potBetButton" layoutX="943.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Pot" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="minBetButton" layoutX="774.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Min" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Slider fx:id="betSlider" layoutX="788.0" layoutY="830.0" prefHeight="40.0" prefWidth="300.0" />
+                  <Button fx:id="allInBetButton" layoutX="1026.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="All in" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="halfPotBetButton" layoutX="859.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="1 /2 Pot" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="foldButton" fx:id="foldButton" layoutX="778.0" layoutY="879.0" mnemonicParsing="false" onAction="#foldButtonPressed" prefHeight="72.0" prefWidth="155.0" style="-fx-background-color: red;" text="Fold" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button id="checkButton" fx:id="checkButton" layoutX="943.0" layoutY="879.0" mnemonicParsing="false" onAction="#checkButtonPressed" prefHeight="72.0" prefWidth="155.0" style="-fx-background-color: orange;" text="Check" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button id="betButton" fx:id="betButton" layoutX="1106.0" layoutY="879.0" mnemonicParsing="false" onAction="#betButtonPressed" prefHeight="72.0" prefWidth="155.0" style="-fx-background-color: green;" text="Bet" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" right="10.0" />
+               </BorderPane.margin>
+            </Group>
+         </right>
+      </BorderPane>
+   </bottom>
+</BorderPane>

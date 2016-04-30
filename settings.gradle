@@ -1,0 +1,10 @@
+rootProject.name = 'poker'
+include ':model'
+include ':commons'
+include ':client'
+include ':server'
+
+project(':model').projectDir = "$rootDir/model" as File
+project(':commons').projectDir = "$rootDir/commons" as File
+project(':client').projectDir = "$rootDir/client" as File
+project(':server').projectDir = "$rootDir/server" as File

@@ -1,0 +1,44 @@
+allprojects  {
+  apply plugin: 'maven'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+  apply plugin: 'eu.appsatori.fatjar'
+
+  group = 'de.stefan-oltmann.poker'
+  version = 'alpha'
+}
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath "eu.appsatori:gradle-fatjar-plugin:0.3"
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+  
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  
+  compileJava.options.encoding = 'UTF-8'
+  
+  /* Workaround für Bug GRADLE-1010 */
+  eclipseJdt << {
+    File f = file('.settings/org.eclipse.core.resources.prefs')
+    f.write('eclipse.preferences.version=1\n')
+    f.append('encoding/<project>=UTF-8')
+  }
+  
+  /* Workaround für Bug GRADLE-1984 */
+  eclipse.classpath.file.beforeMerged{ classpath -> classpath.entries.clear() } 
+  
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }  
+}
+
