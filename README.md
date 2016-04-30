@@ -1,3 +1,8 @@
+### !!! ALPHA STADIUM !!!
+### Die hier entstehende Anwendung funktioniert noch nicht.
+
+---
+
 # Stefans Poker Game
 
 Was erreicht werden soll:
