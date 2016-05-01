@@ -30,8 +30,12 @@ import de.stefan_oltmann.poker.model.hand.Karte;
  */
 public class Spieler {
 
-    private Account account;
-    private SpielImpl spiel;
+    /*
+     * Identifizierung des Spielers
+     */
+    private String id;
+    private String nickName;
+    private String spielId;
 
     /**
      * Dies ist die Information, ob der Spieler
@@ -61,9 +65,10 @@ public class Spieler {
      * Konstruktor
      */
 
-    public Spieler(Account account, SpielImpl spiel) {
-        this.account = account;
-        this.spiel = spiel;
+    public Spieler(String id, String nickName, String spielId) {
+        this.id = id;
+        this.nickName = nickName;
+        this.spielId = spielId;
     }
 
     /*
@@ -84,12 +89,16 @@ public class Spieler {
      * Getters + Setters
      */
 
-    public Account getAccount() {
-        return account;
+    public String getId() {
+        return id;
     }
 
-    public SpielImpl getSpiel() {
-        return spiel;
+    public String getNickName() {
+        return nickName;
+    }
+
+    public String getSpielId() {
+        return spielId;
     }
 
     public boolean isHatKarten() {
@@ -152,6 +161,6 @@ public class Spieler {
 
     @Override
     public String toString() {
-        return "Spieler[" + account + "@" + spiel + "]";
+        return "Spieler [id=" + id + ", nickName=" + nickName + ", spielId=" + spielId + "]";
     }
 }

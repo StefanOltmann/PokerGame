@@ -21,9 +21,13 @@
  *****************************************************************************/
 package de.stefan_oltmann.poker.client;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -42,11 +46,11 @@ import com.google.gson.Gson;
 
 import de.stefan_oltmann.poker.commons.ClientJSonEventSender;
 import de.stefan_oltmann.poker.commons.MessageSender;
-import de.stefan_oltmann.poker.model.Account;
 import de.stefan_oltmann.poker.model.SpielImpl;
 import de.stefan_oltmann.poker.model.Spieler;
 import de.stefan_oltmann.poker.model.dto.CanLoadSpieler;
 import de.stefan_oltmann.poker.model.dto.ServerMessage;
+import de.stefan_oltmann.poker.model.dto.ServerMessage.MessageType;
 
 public class PokerClient extends Application implements MessageSender {
 
@@ -61,17 +65,48 @@ public class PokerClient extends Application implements MessageSender {
      */
     private Map<String, Spieler> bekannteSpielerMap = new HashMap<>();
 
-    /*
-     * Informationen, die seit Start über fremde Accounts gesammelt
-     * werden konnten.
-     */
-    private Map<String, Account> bekannteAccountsMap = new HashMap<>();
+    private String accountId;
+
+    private File accountIdFile = new File(System.getProperty("user.home") + "/stefans_poker_accountid");
 
     private Gson gson = new Gson();
+
+    private String findAccountId() {
+
+        if (accountIdFile.exists() && accountIdFile.length() > 0) {
+
+            try {
+
+                Scanner scanner = new Scanner(accountIdFile);
+
+                String accountId = scanner.next();
+
+                scanner.close();
+
+                return accountId;
+
+            } catch (FileNotFoundException fnfe) {
+                /* Kann durch vorherige Prüfung nicht auftreten. */
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    private void writeAccountId(String accountId) throws FileNotFoundException {
+
+        PrintWriter printWriter = new PrintWriter(accountIdFile);
+        printWriter.write(accountId);
+        printWriter.flush();
+        printWriter.close();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Stefan Oltmann Poker Prototype");
+
+        this.accountId = findAccountId();
 
         /*
          * Dummy Spiel, solange es keine Tisch-Auswahl und Erstellungsmenüs
@@ -82,21 +117,16 @@ public class PokerClient extends Application implements MessageSender {
         final CanLoadSpieler canLoadSpieler = new CanLoadSpieler() {
 
             @Override
-            public Spieler findSpielerById(String accountId, String spielId) {
-
-                String spielerId = accountId + "_" + spielId;
+            public Spieler findSpielerById(String spielerId) {
 
                 Spieler spieler = bekannteSpielerMap.get(spielerId);
 
-                if (spieler == null) {
-
-                    Account account = bekannteAccountsMap.get(accountId);
-
-                    if (account == null)
-                        bekannteAccountsMap.put(accountId, account = new Account(accountId, "John Doe", 0));
-
-                    bekannteSpielerMap.put(spielerId, spieler = new Spieler(account, spiel));
-                }
+                /*
+                 * Wenn der Spieler nicht in der Map steht, hat der Client
+                 * eine SIT-IN-Nachricht verpasst.
+                 */
+                if (spieler == null)
+                    throw new IllegalStateException("Unbekannter Spieler ID " + spielerId);
 
                 return spieler;
             }
@@ -111,6 +141,41 @@ public class PokerClient extends Application implements MessageSender {
 
                 System.out.println("MESSAGE RECEIVED: " + message + " -> " + serverMessage);
 
+                if (serverMessage.getTyp() == MessageType.ERROR) {
+                    System.err.println("Server meldet Fehler: " + serverMessage.getMessage());
+                    return;
+                }
+
+                if (serverMessage.getTyp() == MessageType.LOGIN) {
+                    System.out.println("LOGIN am Server erfolgreich.");
+                    return;
+                }
+
+                if (serverMessage.getTyp() == MessageType.CREATE_ACCOUNT) {
+
+                    System.out.println("Account-Erstellung erfolgreich: " + serverMessage.getAccountId());
+
+                    try {
+                        writeAccountId(serverMessage.getAccountId());
+                    } catch (FileNotFoundException fnfe) {
+                        // TODO FIXME Was tun, wenn wir die ID nicht schreiben
+                        // können?
+                        fnfe.printStackTrace();
+                    }
+
+                    return;
+                }
+
+                /*
+                 * Beim Sit-In die Information über den Spieler für unsere
+                 * bekannteSpielerMap mitschneiden.
+                 */
+                if (serverMessage.getTyp() == MessageType.SIT_IN) {
+
+                    bekannteSpielerMap.put(serverMessage.getSpielerId(),
+                            new Spieler(serverMessage.getSpielerId(), serverMessage.getNickName(), serverMessage.getSpielId()));
+                }
+
                 /*
                  * Aktualisiere das lokale Spiel aufgrund der Rückmeldung vom
                  * Server.
@@ -121,6 +186,26 @@ public class PokerClient extends Application implements MessageSender {
             @Override
             public void onOpen(ServerHandshake handshake) {
                 System.out.println("SERVER CONNECTION ESTABLISHED");
+
+                /*
+                 * Jetzt, da wir verbunden sind: Logge mit bestehender ID ein
+                 * oder versuche vom Server eine Account-ID zu erhalten.
+                 */
+                if (accountId != null) {
+
+                    ServerMessage serverMessage = new ServerMessage();
+                    serverMessage.setTyp(MessageType.LOGIN);
+                    serverMessage.setAccountId(accountId);
+
+                    send(gson.toJson(serverMessage));
+
+                } else {
+
+                    ServerMessage serverMessage = new ServerMessage();
+                    serverMessage.setTyp(MessageType.CREATE_ACCOUNT);
+
+                    send(gson.toJson(serverMessage));
+                }
             }
 
             @Override

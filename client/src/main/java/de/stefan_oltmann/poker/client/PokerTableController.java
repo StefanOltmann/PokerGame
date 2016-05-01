@@ -272,7 +272,7 @@ public class PokerTableController implements Initializable, SpielEventListener {
     @Override
     public void onPlayerSatIn(Spieler spieler, int platzNummer, int chips) {
 
-        String nickName = spieler.getAccount().getNickname();
+        String nickName = spieler.getNickName();
 
         if (nickName == null)
             nickName = "John Doe";

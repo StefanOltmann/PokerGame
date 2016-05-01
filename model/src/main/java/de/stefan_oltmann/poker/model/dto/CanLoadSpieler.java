@@ -4,6 +4,6 @@ import de.stefan_oltmann.poker.model.Spieler;
 
 public interface CanLoadSpieler {
 
-    Spieler findSpielerById(String accountId, String spielId);
+    Spieler findSpielerById(String spielerId);
 
 }

@@ -30,13 +30,26 @@ public class ServerMessage {
 
     private MessageType typ;
 
+    /* Gesetzt wenn es um ein Spiel geht. */
     private String spielId;
+    private String spielerId;
+
+    /* Gesetzt beim Typ ERROR */
+    private String message;
+
+    /*
+     * Gesetzt, wenn es um Login oder Erstellung
+     * eines Accounts geht.
+     */
     private String accountId;
 
     /** Gesetzt bei Typ SIT_IN */
     private Integer platzNummer;
 
-    /** Gesetzte bei BET & RAISE */
+    /** Gesetzt bei Typ SIT_IN oder CHANGE_NICK */
+    private String nickName;
+
+    /** Gesetzte bei SIT_IN, BET, RAISE und ASK_BALANCE */
     private Integer chips;
 
     /** Gesetzt bei DEAL_FLOP */
@@ -70,8 +83,24 @@ public class ServerMessage {
      * Getters + Setters
      */
 
+    public MessageType getTyp() {
+        return typ;
+    }
+
+    public void setTyp(MessageType typ) {
+        this.typ = typ;
+    }
+
     public String getSpielId() {
         return spielId;
+    }
+
+    public String getSpielerId() {
+        return spielerId;
+    }
+
+    public void setSpielerId(String spielerId) {
+        this.spielerId = spielerId;
     }
 
     public void setSpielId(String spielId) {
@@ -86,12 +115,12 @@ public class ServerMessage {
         this.accountId = accountId;
     }
 
-    public MessageType getTyp() {
-        return typ;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTyp(MessageType typ) {
-        this.typ = typ;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Integer getPlatzNummer() {
@@ -100,6 +129,14 @@ public class ServerMessage {
 
     public void setPlatzNummer(Integer platzNummer) {
         this.platzNummer = platzNummer;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public Integer getChips() {
@@ -204,6 +241,24 @@ public class ServerMessage {
 
     public enum MessageType {
 
+        /* Allgemein */
+
+        ERROR,
+
+        /* Account-Verwaltung */
+
+        /* Erstellung eines neuen Accounts */
+        CREATE_ACCOUNT,
+
+        /* Login mit bestehendem Account */
+        LOGIN,
+
+        /* Abfrage der verfügbaren Chips */
+        ASK_BALANCE,
+
+        /* Änderung des Nickname */
+        CHANGE_NICK,
+
         /* Beitritt, Aussitzen und Verlassen */
 
         /** Beitritt zu einem Spiel */
@@ -270,7 +325,7 @@ public class ServerMessage {
          * TODO Implemenent
          */
 
-        Spieler spieler = canLoadSpieler.findSpielerById(accountId, spielId);
+        Spieler spieler = canLoadSpieler.findSpielerById(spielerId);
 
         switch (typ) {
 
@@ -360,6 +415,6 @@ public class ServerMessage {
 
     @Override
     public String toString() {
-        return "ServerMessage [typ=" + typ + ", spielId=" + spielId + ", accountId=" + accountId + ", platzNummer=" + platzNummer + ", chips=" + chips + ", flop1=" + flop1 + ", flop2=" + flop2 + ", flop3=" + flop3 + ", turn=" + turn + ", river=" + river + ", button=" + button + ", aktiverSpieler=" + aktiverSpieler + ", letzterSpieler=" + letzterSpieler + ", blindHoehe=" + blindHoehe + "]";
+        return "ServerMessage [typ=" + typ + ", spielId=" + spielId + ", spielerId=" + spielerId + ", message=" + message + ", accountId=" + accountId + ", platzNummer=" + platzNummer + ", nickName=" + nickName + ", chips=" + chips + ", flop1=" + flop1 + ", flop2=" + flop2 + ", flop3=" + flop3 + ", turn=" + turn + ", river=" + river + ", holeCard1=" + holeCard1 + ", holeCard2=" + holeCard2 + ", button=" + button + ", aktiverSpieler=" + aktiverSpieler + ", letzterSpieler=" + letzterSpieler + ", blindHoehe=" + blindHoehe + "]";
     }
 }

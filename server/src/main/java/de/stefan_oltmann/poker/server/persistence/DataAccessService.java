@@ -21,7 +21,7 @@
  *****************************************************************************/
 package de.stefan_oltmann.poker.server.persistence;
 
-import java.util.List;
+import java.util.Map;
 
 import de.stefan_oltmann.poker.model.Account;
 
@@ -42,7 +42,7 @@ public interface DataAccessService {
 
     Account erstelleNeuenAccount();
 
-    List<Account> findAllAccounts();
+    Map<String, Account> findAllAccounts();
 
     Account findAccountById(String accountId);
 

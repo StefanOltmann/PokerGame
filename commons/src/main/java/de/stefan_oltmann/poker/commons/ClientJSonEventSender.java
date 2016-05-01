@@ -71,7 +71,7 @@ public class ClientJSonEventSender implements Spiel {
          * Sicherheitsgründen sowieso vom Server festgestellt und gesetzt wird.
          */
         if (spieler != null)
-            serverMessage.setAccountId(spieler.getAccount().getId());
+            serverMessage.setSpielerId(spieler.getId());
 
         return serverMessage;
     }

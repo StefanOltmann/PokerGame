@@ -22,8 +22,7 @@
 package de.stefan_oltmann.poker.server.persistence;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 
 import org.mapdb.DB;
@@ -31,14 +30,21 @@ import org.mapdb.DBMaker;
 
 import de.stefan_oltmann.poker.model.Account;
 import de.stefan_oltmann.poker.server.IdGeneratorTool;
+import de.stefan_oltmann.poker.server.NameGeneratorTool;
 
 public class DataAccessServiceMapDbImpl implements DataAccessService {
 
     private static DataAccessServiceMapDbImpl instance;
 
+    private static final int STARTING_CHIPS = 10000;
+
     public static final File MAPDB_FILE = new File("data");
 
+    /* MapDB */
     private Map<String, Account> alleAccountsMap;
+
+    /* Für Herausgabe, damit nicht von woanders darauf rumgeschrieben wird. */
+    private Map<String, Account> alleAccountsMapUnmodifieable;
 
     private DB db;
 
@@ -47,6 +53,8 @@ public class DataAccessServiceMapDbImpl implements DataAccessService {
         db = DBMaker.newFileDB(MAPDB_FILE).make();
 
         alleAccountsMap = db.getTreeMap("accounts");
+
+        alleAccountsMapUnmodifieable = Collections.unmodifiableMap(alleAccountsMap);
 
         db.commit();
     }
@@ -76,9 +84,18 @@ public class DataAccessServiceMapDbImpl implements DataAccessService {
 
         Account account = new Account();
 
-        account.setId(IdGeneratorTool.generateId());
-        account.setNickname("John Doe");
-        account.setChipsGesamt(10000);
+        String accountId = IdGeneratorTool.generateId();
+
+        /*
+         * Für den unwahrscheinlichen Fall, dass diese
+         * Account-ID schon vergeben wurde.
+         */
+        while (alleAccountsMap.containsKey(accountId))
+            accountId = IdGeneratorTool.generateId();
+
+        account.setId(accountId);
+        account.setNickname(NameGeneratorTool.getRandomNickname());
+        account.setChipsGesamt(STARTING_CHIPS);
 
         alleAccountsMap.put(account.getId(), account);
 
@@ -88,14 +105,12 @@ public class DataAccessServiceMapDbImpl implements DataAccessService {
     }
 
     @Override
-    public List<Account> findAllAccounts() {
-
-        return new ArrayList<Account>(alleAccountsMap.values());
+    public Map<String, Account> findAllAccounts() {
+        return alleAccountsMapUnmodifieable;
     }
 
     @Override
     public Account findAccountById(String spielerId) {
-
         return alleAccountsMap.get(spielerId);
     }
 

@@ -47,16 +47,24 @@ import de.stefan_oltmann.poker.server.persistence.DataAccessServiceMapDbImpl;
 
 public class PokerServer extends WebSocketServer implements MessageSender {
 
-    private DataAccessService dataAccessService = DataAccessServiceMapDbImpl.getInstance();
+    private DataAccessService dataAccessService;
 
     private SpielImpl spiel;
 
-    private Map<WebSocket, Account> accountMap = new HashMap<>();
+    /**
+     * In dieser Map wird vermerkt, hinter welchem WebSocket welcher Account
+     * steckt.
+     */
+    private Map<WebSocket, Account> webSocketToAccountMap = new HashMap<>();
+
+    private Map<String, Spieler> spielerMap = new HashMap<>();
 
     private Gson gson = new Gson();
 
     public PokerServer(int port) throws UnknownHostException {
         super(new InetSocketAddress(port));
+
+        this.dataAccessService = DataAccessServiceMapDbImpl.getInstance();
 
         /* Dummy Instanz des Spiels */
         spiel = new SpielImpl("1");
@@ -88,22 +96,92 @@ public class PokerServer extends WebSocketServer implements MessageSender {
 
         System.out.println("RECEIVED " + conn + " = " + message + " -> " + serverMessage);
 
-        Account account = accountMap.get(conn);
+        if (serverMessage.getTyp() == MessageType.CREATE_ACCOUNT) {
 
-        // TODO FIXME Fake-Account erstellen, damit gespielt werden kann.
-        if (account == null)
-            accountMap.put(conn, account = dataAccessService.erstelleNeuenAccount());
+            /* Wie gefordert einen neuen Account anlegen. */
+            Account account = dataAccessService.erstelleNeuenAccount();
+
+            /* Vermeken, dass dieser WebSocket mit dem Account verbunden ist. */
+            webSocketToAccountMap.put(conn, account);
+
+            /* Dem Client die vergebene Account-ID (= sein Login) mitteillen. */
+            ServerMessage response = new ServerMessage();
+            response.setTyp(MessageType.CREATE_ACCOUNT);
+            response.setAccountId(account.getId());
+
+            conn.send(gson.toJson(response));
+
+            System.out.println("Account " + account + " wurde erstellt.");
+
+            return;
+        }
+
+        if (serverMessage.getTyp() == MessageType.LOGIN) {
+
+            Account account = dataAccessService.findAccountById(serverMessage.getAccountId());
+
+            if (account == null) {
+
+                System.err.println("Account " + serverMessage.getAccountId() + " nicht gefunden!");
+
+                ServerMessage response = new ServerMessage();
+                response.setTyp(MessageType.ERROR);
+                response.setMessage("Account " + serverMessage.getAccountId() + " nicht gefunden!");
+                conn.send(gson.toJson(response));
+
+                return;
+            }
+
+            System.out.println("Account " + account + " hat sich erfolgreich eingelogged.");
+
+            /* Vermeken, dass dieser WebSocket mit dem Account verbunden ist. */
+            webSocketToAccountMap.put(conn, account);
+
+            /*
+             * Dem Client dieselbe Nachricht als Bestätigung zurückschicken.
+             * 
+             * TODO FIXME Welches Verhalten wäre sonst gut? Keine Rückmeldung?
+             */
+            ServerMessage response = new ServerMessage();
+            response.setTyp(MessageType.LOGIN);
+            response.setAccountId(account.getId());
+
+            conn.send(gson.toJson(response));
+
+            return;
+        }
+
+        /*
+         * Wenn die Ausführung bis hierhin gekommen ist muss der
+         * WebSocket mit einem Account verbunden sein oder es
+         * folgen Fehler, weil der Client sich nicht authentifiziert hat.
+         */
+
+        Account account = webSocketToAccountMap.get(conn);
+
+        if (account == null) {
+
+            System.err.println("Client " + conn + " hat sich nicht authentifiziert.");
+
+            ServerMessage response = new ServerMessage();
+            response.setTyp(MessageType.ERROR);
+            response.setMessage("Kein Account verbunden. Bitte erst einloggen oder neuen Account erstellen.");
+            conn.send(gson.toJson(response));
+
+            return;
+        }
 
         CanLoadSpieler canLoadSpieler = new CanLoadSpieler() {
 
             @Override
-            public Spieler findSpielerById(String accountId, String spielId) {
+            public Spieler findSpielerById(String spielerId) {
 
-                /*
-                 * TODO Spieler aus Registry nehmen
-                 */
+                Spieler spieler = spielerMap.get(spielerId);
 
-                return null;
+                if (spieler == null)
+                    throw new IllegalStateException("Unbekannte Spieler-ID " + spielerId);
+
+                return spieler;
             }
         };
 
@@ -119,9 +197,17 @@ public class PokerServer extends WebSocketServer implements MessageSender {
              */
             if (spiel.getSpielerAn(platzNummer) == null) {
 
-                Spieler spieler = new Spieler(account, spiel);
+                /* Erstellung eines neuen Spielers für das Spiel. */
+                Spieler spieler = new Spieler(
+                        IdGeneratorTool.generateId(), account.getNickname(), spiel.getId());
 
                 account.setChipsGesamt(account.getChipsGesamt() - buyIn);
+
+                /*
+                 * Das neu erstellte Spiel in der Server-Registry bekannt
+                 * machen.
+                 */
+                spielerMap.put(spieler.getId(), spieler);
 
                 spiel.sitIn(spieler, platzNummer, buyIn);
             }

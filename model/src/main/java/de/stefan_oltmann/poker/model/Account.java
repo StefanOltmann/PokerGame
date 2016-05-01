@@ -36,6 +36,11 @@ public class Account implements Serializable {
      * Die Account-ID eines Spielers ist eine quasi nicht
      * zu erratende GUID und gleichzeitig Login und Passwort
      * für den Benutzer.
+     * 
+     * Die Account-ID wird daher für andere Spieler geheimgehalten.
+     * Diese bekommen lediglich die Spieler-ID zu sehen.
+     * Der Server stellt sicher, dass nur der erzeugende Account
+     * die Spieler-ID auch verwenden kann.
      */
     private String accountId;
 
@@ -57,6 +62,10 @@ public class Account implements Serializable {
      */
 
     public Account() {
+    }
+
+    public Account(String accountId) {
+        this.accountId = accountId;
     }
 
     public Account(String accountId, String nickname, long chipsGesamt) {

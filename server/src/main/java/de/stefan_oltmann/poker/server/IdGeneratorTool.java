@@ -25,6 +25,8 @@ import java.util.Random;
 
 public class IdGeneratorTool {
 
+    public static final int ID_ZEICHENLAENGE = 10;
+
     private static char[] POOL = { '2', '3', '4', '5', '6', '7', '8', '9',
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
             'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z' };
@@ -35,7 +37,7 @@ public class IdGeneratorTool {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < ID_ZEICHENLAENGE; i++)
             sb.append(POOL[random.nextInt(POOL.length)]);
 
         return sb.toString();

@@ -51,9 +51,9 @@ public class SpielControllerTest extends TestCase {
 
         SpielController spielController = new SpielController(spiel);
 
-        Spieler spielerAlice = new Spieler(ALICE, spiel);
-        Spieler spielerBob = new Spieler(BOB, spiel);
-        Spieler spielerEve = new Spieler(EVE, spiel);
+        Spieler spielerAlice = new Spieler("1", ALICE.getId(), spiel.getId());
+        Spieler spielerBob = new Spieler("2", BOB.getId(), spiel.getId());
+        Spieler spielerEve = new Spieler("3", EVE.getId(), spiel.getId());
 
         /*
          * Status-Prüfung vor Start
