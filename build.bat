@@ -1,2 +1,2 @@
-exec gradlew.bat build fatJar
+gradlew.bat build fatJar
 pause
