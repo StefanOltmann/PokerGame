@@ -22,12 +22,19 @@
 package de.stefan_oltmann.poker.client;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.text.Text;
 import de.stefan_oltmann.poker.model.BlindHoehe;
 import de.stefan_oltmann.poker.model.Spiel;
 import de.stefan_oltmann.poker.model.SpielEventListener;
@@ -38,9 +45,96 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
     private Spiel spiel;
 
+    private Map<Spieler, Integer> platzNummernMap = new HashMap<>();
+
+    private Map<Integer, Text> playerNameLabelPerPlatznummer = new HashMap<>();
+    private Map<Integer, Text> playerMoneyLabelPerPlatznummer = new HashMap<>();
+
     public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
     }
+
+    /*
+     * Spieler 1
+     */
+
+    @FXML
+    private Button sitInPlayer1;
+
+    @FXML
+    private Text playerName1;
+
+    @FXML
+    private Text playerMoney1;
+
+    /*
+     * Spieler 2
+     */
+
+    @FXML
+    private Button sitInPlayer2;
+
+    @FXML
+    private Text playerName2;
+
+    @FXML
+    private Text playerMoney2;
+
+    /*
+     * Spieler 3
+     */
+
+    @FXML
+    private Button sitInPlayer3;
+
+    @FXML
+    private Text playerName3;
+
+    @FXML
+    private Text playerMoney3;
+
+    /*
+     * Spieler 4
+     */
+
+    @FXML
+    private Button sitInPlayer4;
+
+    @FXML
+    private Text playerName4;
+
+    @FXML
+    private Text playerMoney4;
+
+    /*
+     * Spieler 5
+     */
+
+    @FXML
+    private Button sitInPlayer5;
+
+    @FXML
+    private Text playerName5;
+
+    @FXML
+    private Text playerMoney5;
+
+    /*
+     * Spieler 6
+     */
+
+    @FXML
+    private Button sitInPlayer6;
+
+    @FXML
+    private Text playerName6;
+
+    @FXML
+    private Text playerMoney6;
+
+    /*
+     * Fold/Check/Bet/Raise-Controls
+     */
 
     @FXML
     private Button foldButton;
@@ -52,22 +146,14 @@ public class PokerTableController implements Initializable, SpielEventListener {
     private Button betButton;
 
     @FXML
-    private Button sitDownPlayer1;
+    private Slider betSlider;
 
     @FXML
-    private Button sitDownPlayer2;
+    private Label betAmountLabel;
 
-    @FXML
-    private Button sitDownPlayer3;
-
-    @FXML
-    private Button sitDownPlayer4;
-
-    @FXML
-    private Button sitDownPlayer5;
-
-    @FXML
-    private Button sitDownPlayer6;
+    /*
+     * Events der Controls
+     */
 
     @FXML
     private void foldButtonPressed(ActionEvent event) {
@@ -85,44 +171,98 @@ public class PokerTableController implements Initializable, SpielEventListener {
     }
 
     @FXML
-    private void sitDownPlayer1(ActionEvent event) {
+    private void minBetButtonPressed(ActionEvent event) {
+
+        betSlider.setValue(10);
+    }
+
+    @FXML
+    private void halfPotBetButtonPressed(ActionEvent event) {
+
+        betSlider.setValue(25);
+    }
+
+    @FXML
+    private void potBetButtonPressed(ActionEvent event) {
+
+        betSlider.setValue(50);
+    }
+
+    @FXML
+    private void allInBetButtonPressed(ActionEvent event) {
+
+        betSlider.setValue(100);
+    }
+
+    /*
+     * Actions zur Spielteilnahme
+     */
+
+    @FXML
+    private void sitInPlayer1(ActionEvent event) {
 
         spiel.sitIn(null, 0, 0);
     }
 
     @FXML
-    private void sitDownPlayer2(ActionEvent event) {
+    private void sitInPlayer2(ActionEvent event) {
 
         spiel.sitIn(null, 1, 0);
     }
 
     @FXML
-    private void sitDownPlayer3(ActionEvent event) {
+    private void sitInPlayer3(ActionEvent event) {
 
         spiel.sitIn(null, 2, 0);
     }
 
     @FXML
-    private void sitDownPlayer4(ActionEvent event) {
+    private void sitInPlayer4(ActionEvent event) {
 
         spiel.sitIn(null, 3, 0);
     }
 
     @FXML
-    private void sitDownPlayer5(ActionEvent event) {
+    private void sitInPlayer5(ActionEvent event) {
 
         spiel.sitIn(null, 4, 0);
     }
 
     @FXML
-    private void sitDownPlayer6(ActionEvent event) {
+    private void sitInPlayer6(ActionEvent event) {
 
         spiel.sitIn(null, 5, 0);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Hier muss nichts gemacht werden.
+
+        /*
+         * Zur einfacheren Verwaltung die Controls per Platznummer in die Map
+         * schreiben.
+         */
+
+        playerNameLabelPerPlatznummer.put(0, playerName1);
+        playerNameLabelPerPlatznummer.put(1, playerName2);
+        playerNameLabelPerPlatznummer.put(2, playerName3);
+        playerNameLabelPerPlatznummer.put(3, playerName4);
+        playerNameLabelPerPlatznummer.put(4, playerName5);
+        playerNameLabelPerPlatznummer.put(5, playerName6);
+
+        playerMoneyLabelPerPlatznummer.put(0, playerMoney1);
+        playerMoneyLabelPerPlatznummer.put(1, playerMoney2);
+        playerMoneyLabelPerPlatznummer.put(2, playerMoney3);
+        playerMoneyLabelPerPlatznummer.put(3, playerMoney4);
+        playerMoneyLabelPerPlatznummer.put(4, playerMoney5);
+        playerMoneyLabelPerPlatznummer.put(5, playerMoney6);
+
+        /* Der Wert des Bet-Sliders soll auf dem Label daneben angezeigt werden. */
+        betSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+                betAmountLabel.setText(" " + newValue.intValue() + " ");
+            }
+        });
     }
 
     /*
@@ -131,20 +271,32 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
     @Override
     public void onPlayerSatIn(Spieler spieler, int platzNummer, int chips) {
-        // TODO Auto-generated method stub
 
+        String nickName = spieler.getAccount().getNickname();
+
+        platzNummernMap.put(spieler, platzNummer);
+
+        Text playerNameLabel = playerNameLabelPerPlatznummer.get(platzNummer);
+        Text playerMoneyLabel = playerMoneyLabelPerPlatznummer.get(platzNummer);
+
+        playerNameLabel.setText(nickName);
+        playerMoneyLabel.setText(" " + chips + " ");
     }
 
     @Override
     public void onPlayerSatOut(Spieler spieler) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onPlayerLeft(Spieler spieler) {
-        // TODO Auto-generated method stub
 
+        int platzNummer = platzNummernMap.get(spieler);
+
+        Text playerNameLabel = playerNameLabelPerPlatznummer.get(platzNummer);
+        Text playerMoneyLabel = playerMoneyLabelPerPlatznummer.get(platzNummer);
+
+        playerNameLabel.setText("Freier Platz");
+        playerMoneyLabel.setText("SIT IN");
     }
 
     @Override
@@ -185,7 +337,6 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
     @Override
     public void onAktiverSpielerGesetzt(Spieler spieler, int sekunden) {
-        // TODO Auto-generated method stub
 
     }
 

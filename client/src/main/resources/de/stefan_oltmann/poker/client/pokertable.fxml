@@ -19,14 +19,14 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer1" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer1" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer1" layoutX="539.0" layoutY="66.0" onAction="#sitInPlayer1" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName1" id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerMoney1" id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="29.0" />
                      </font>
@@ -43,14 +43,14 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer2" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer2" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer2" layoutX="539.0" layoutY="66.0" onAction="#sitInPlayer2" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName2" id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerMoney2" id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="29.0" />
                      </font>
@@ -67,14 +67,14 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="639.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="615.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="538.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer3" layoutX="539.0" layoutY="66.0" onAction="#sitDownPlayer3" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer3" layoutX="539.0" layoutY="66.0" onAction="#sitInPlayer3" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="755.0" layoutY="109.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName3" id="spielerName" fill="WHITE" layoutX="548.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerMoney3" id="spielerGeld" fill="WHITE" layoutX="552.0" layoutY="135.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="29.0" />
                      </font>
@@ -91,16 +91,16 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer4" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer4" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer4" layoutX="60.0" layoutY="501.0" onAction="#sitInPlayer4" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
-                     <font>
-                        <Font name="System Bold" size="29.0" />
-                     </font>
-                  </Text>
-                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName4" id="spielerName" fill="WHITE" layoutX="98.0" layoutY="535.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="playerMoney4" id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
                      </font>
                   </Text>
                   <Text layoutX="47.0" layoutY="616.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
@@ -115,16 +115,16 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer5" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer5" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer5" layoutX="60.0" layoutY="501.0" onAction="#sitInPlayer5" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
-                     <font>
-                        <Font name="System Bold" size="29.0" />
-                     </font>
-                  </Text>
-                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName6" id="spielerName" fill="WHITE" layoutX="98.0" layoutY="535.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="playerMoney5" id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
                      </font>
                   </Text>
                   <Text layoutX="47.0" layoutY="616.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
@@ -139,16 +139,16 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="75.0" layoutX="138.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff" height="75.0" layoutX="114.0" layoutY="464.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
-                  <Button fx:id="sitDownPlayer6" layoutX="60.0" layoutY="501.0" onAction="#sitDownPlayer6" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
+                  <Button fx:id="sitInPlayer6" layoutX="60.0" layoutY="501.0" onAction="#sitInPlayer6" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT DOWN" textAlignment="CENTER" wrappingWidth="150.0">
-                     <font>
-                        <Font name="System Bold" size="29.0" />
-                     </font>
-                  </Text>
-                  <Text id="spielerName" fill="WHITE" layoutX="98.0" mouseTransparent="true" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName6" id="spielerName" fill="WHITE" layoutX="98.0" layoutY="535.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="playerMoney6" id="spielerGeld" fill="WHITE" layoutX="98.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIT IN" textAlignment="CENTER" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
                      </font>
                   </Text>
                   <Text layoutX="47.0" layoutY="616.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECK" textAlignment="CENTER" wrappingWidth="200.0">
@@ -176,28 +176,28 @@
          <right>
             <Group id="betCheckFoldControls" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="1109.0" layoutY="820.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray; -fx-border-radius: 20;" text="150" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                  <Label fx:id="betAmountLabel" layoutX="1109.0" layoutY="820.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray; -fx-border-radius: 20;" text="150" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Button fx:id="potBetButton" layoutX="943.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Pot" textFill="WHITE">
+                  <Button fx:id="potBetButton" layoutX="943.0" layoutY="784.0" mnemonicParsing="false" onAction="#potBetButtonPressed" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Pot" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="minBetButton" layoutX="774.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Min" textFill="WHITE">
+                  <Button fx:id="minBetButton" layoutX="774.0" layoutY="784.0" mnemonicParsing="false" onAction="#minBetButtonPressed" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="Min" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                   <Slider fx:id="betSlider" layoutX="788.0" layoutY="830.0" prefHeight="40.0" prefWidth="300.0" />
-                  <Button fx:id="allInBetButton" layoutX="1026.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="All in" textFill="WHITE">
+                  <Button fx:id="allInBetButton" layoutX="1026.0" layoutY="784.0" mnemonicParsing="false" onAction="#allInBetButtonPressed" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="All in" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="halfPotBetButton" layoutX="859.0" layoutY="784.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="1 /2 Pot" textFill="WHITE">
+                  <Button fx:id="halfPotBetButton" layoutX="859.0" layoutY="784.0" mnemonicParsing="false" onAction="#halfPotBetButtonPressed" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: gray;" text="1 /2 Pot" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
