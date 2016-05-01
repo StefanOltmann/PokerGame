@@ -1,7 +1,5 @@
 allprojects  {
   apply plugin: 'maven'
-  apply plugin: 'eclipse'
-  apply plugin: 'idea'
   apply plugin: 'eu.appsatori.fatjar'
 
   group = 'de.stefan-oltmann.poker'
@@ -20,6 +18,8 @@ buildscript {
 
 subprojects {
   apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
   
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
