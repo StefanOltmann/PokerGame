@@ -117,7 +117,7 @@
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DARKGRAY" height="33.0" layoutX="37.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
                   <Button fx:id="sitInPlayer5" layoutX="60.0" layoutY="501.0" onAction="#sitInPlayer5" prefHeight="88.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: darkgray;" />
                   <Circle fill="DARKGRAY" layoutX="42.0" layoutY="544.0" radius="56.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="5.0" />
-                  <Text fx:id="playerName6" id="spielerName" fill="WHITE" layoutX="98.0" layoutY="535.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
+                  <Text fx:id="playerName5" id="spielerName" fill="WHITE" layoutX="98.0" layoutY="535.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Freier Platz" textAlignment="CENTER" wrappingWidth="150.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

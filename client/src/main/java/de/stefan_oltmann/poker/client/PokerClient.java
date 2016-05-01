@@ -22,6 +22,8 @@
 package de.stefan_oltmann.poker.client;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -40,6 +42,7 @@ import com.google.gson.Gson;
 
 import de.stefan_oltmann.poker.commons.ClientJSonEventSender;
 import de.stefan_oltmann.poker.commons.MessageSender;
+import de.stefan_oltmann.poker.model.Account;
 import de.stefan_oltmann.poker.model.SpielImpl;
 import de.stefan_oltmann.poker.model.Spieler;
 import de.stefan_oltmann.poker.model.dto.CanLoadSpieler;
@@ -48,6 +51,21 @@ import de.stefan_oltmann.poker.model.dto.ServerMessage;
 public class PokerClient extends Application implements MessageSender {
 
     private WebSocketClient webSocketClient;
+
+    /*
+     * Hier werden alle Spieler mit denen der Client Kontakt seit
+     * Start hatte vermerkt. Es gibt keine Methode zum Abruf aller
+     * Spieler-Informationen an einem Tisch.... Hmm...
+     * 
+     * TODO Ist das ein gutes Konzept?
+     */
+    private Map<String, Spieler> bekannteSpielerMap = new HashMap<>();
+
+    /*
+     * Informationen, die seit Start über fremde Accounts gesammelt
+     * werden konnten.
+     */
+    private Map<String, Account> bekannteAccountsMap = new HashMap<>();
 
     private Gson gson = new Gson();
 
@@ -66,11 +84,21 @@ public class PokerClient extends Application implements MessageSender {
             @Override
             public Spieler findSpielerById(String accountId, String spielId) {
 
-                /*
-                 * TODO Spieler aus Registry nehmen und zurückliefern.
-                 */
+                String spielerId = accountId + "_" + spielId;
 
-                return null;
+                Spieler spieler = bekannteSpielerMap.get(spielerId);
+
+                if (spieler == null) {
+
+                    Account account = bekannteAccountsMap.get(accountId);
+
+                    if (account == null)
+                        bekannteAccountsMap.put(accountId, account = new Account(accountId, "John Doe", 0));
+
+                    bekannteSpielerMap.put(spielerId, spieler = new Spieler(account, spiel));
+                }
+
+                return spieler;
             }
         };
 

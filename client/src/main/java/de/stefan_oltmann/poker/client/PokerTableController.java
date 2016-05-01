@@ -47,8 +47,8 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
     private Map<Spieler, Integer> platzNummernMap = new HashMap<>();
 
-    private Map<Integer, Text> playerNameLabelPerPlatznummer = new HashMap<>();
-    private Map<Integer, Text> playerMoneyLabelPerPlatznummer = new HashMap<>();
+    private Map<Integer, Text> playerNameLabelPerPlatznummerMap = new HashMap<>();
+    private Map<Integer, Text> playerMoneyLabelPerPlatznummerMap = new HashMap<>();
 
     public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
@@ -242,19 +242,19 @@ public class PokerTableController implements Initializable, SpielEventListener {
          * schreiben.
          */
 
-        playerNameLabelPerPlatznummer.put(0, playerName1);
-        playerNameLabelPerPlatznummer.put(1, playerName2);
-        playerNameLabelPerPlatznummer.put(2, playerName3);
-        playerNameLabelPerPlatznummer.put(3, playerName4);
-        playerNameLabelPerPlatznummer.put(4, playerName5);
-        playerNameLabelPerPlatznummer.put(5, playerName6);
+        playerNameLabelPerPlatznummerMap.put(0, playerName1);
+        playerNameLabelPerPlatznummerMap.put(1, playerName2);
+        playerNameLabelPerPlatznummerMap.put(2, playerName3);
+        playerNameLabelPerPlatznummerMap.put(3, playerName4);
+        playerNameLabelPerPlatznummerMap.put(4, playerName5);
+        playerNameLabelPerPlatznummerMap.put(5, playerName6);
 
-        playerMoneyLabelPerPlatznummer.put(0, playerMoney1);
-        playerMoneyLabelPerPlatznummer.put(1, playerMoney2);
-        playerMoneyLabelPerPlatznummer.put(2, playerMoney3);
-        playerMoneyLabelPerPlatznummer.put(3, playerMoney4);
-        playerMoneyLabelPerPlatznummer.put(4, playerMoney5);
-        playerMoneyLabelPerPlatznummer.put(5, playerMoney6);
+        playerMoneyLabelPerPlatznummerMap.put(0, playerMoney1);
+        playerMoneyLabelPerPlatznummerMap.put(1, playerMoney2);
+        playerMoneyLabelPerPlatznummerMap.put(2, playerMoney3);
+        playerMoneyLabelPerPlatznummerMap.put(3, playerMoney4);
+        playerMoneyLabelPerPlatznummerMap.put(4, playerMoney5);
+        playerMoneyLabelPerPlatznummerMap.put(5, playerMoney6);
 
         /* Der Wert des Bet-Sliders soll auf dem Label daneben angezeigt werden. */
         betSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -274,10 +274,13 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
         String nickName = spieler.getAccount().getNickname();
 
+        if (nickName == null)
+            nickName = "John Doe";
+
         platzNummernMap.put(spieler, platzNummer);
 
-        Text playerNameLabel = playerNameLabelPerPlatznummer.get(platzNummer);
-        Text playerMoneyLabel = playerMoneyLabelPerPlatznummer.get(platzNummer);
+        Text playerNameLabel = playerNameLabelPerPlatznummerMap.get(platzNummer);
+        Text playerMoneyLabel = playerMoneyLabelPerPlatznummerMap.get(platzNummer);
 
         playerNameLabel.setText(nickName);
         playerMoneyLabel.setText(" " + chips + " ");
@@ -292,8 +295,8 @@ public class PokerTableController implements Initializable, SpielEventListener {
 
         int platzNummer = platzNummernMap.get(spieler);
 
-        Text playerNameLabel = playerNameLabelPerPlatznummer.get(platzNummer);
-        Text playerMoneyLabel = playerMoneyLabelPerPlatznummer.get(platzNummer);
+        Text playerNameLabel = playerNameLabelPerPlatznummerMap.get(platzNummer);
+        Text playerMoneyLabel = playerMoneyLabelPerPlatznummerMap.get(platzNummer);
 
         playerNameLabel.setText("Freier Platz");
         playerMoneyLabel.setText("SIT IN");
